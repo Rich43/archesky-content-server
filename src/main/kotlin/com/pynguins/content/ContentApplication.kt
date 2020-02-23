@@ -7,13 +7,15 @@ import graphql.schema.idl.SchemaGenerator
 import graphql.schema.idl.SchemaParser
 import graphql.schema.idl.TypeDefinitionRegistry
 import graphql.schema.idl.TypeRuntimeWiring
+import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
+import kotlin.system.exitProcess
 
 
 fun main(args: Array<String>) {
-    runApplication<ContentApplication>(*args)
+    val runner = arrayOf<Class<*>>(CrudRunner::class.java)
+    exitProcess(SpringApplication.exit(SpringApplication.run(runner, args)))
 }
 
 @SpringBootApplication
