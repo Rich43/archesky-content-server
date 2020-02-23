@@ -31,6 +31,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:6.0.0")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
+	implementation("com.arangodb:arangodb-spring-data:3.2.3")
 	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:6.0.0")
 	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.0")
 	runtimeOnly("com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.0")
