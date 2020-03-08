@@ -10,12 +10,11 @@ import graphql.schema.idl.TypeRuntimeWiring
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.annotation.Bean
-import kotlin.system.exitProcess
 
 
 fun main(args: Array<String>) {
     val runner = arrayOf<Class<*>>(CrudRunner::class.java)
-    exitProcess(SpringApplication.exit(SpringApplication.run(runner, args)))
+    SpringApplication.run(runner, args)
 }
 
 @SpringBootApplication
