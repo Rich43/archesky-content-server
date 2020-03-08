@@ -1,0 +1,12 @@
+schema {
+    query: QueryType
+}
+
+type QueryType {
+    content: [Content]!
+}
+
+type Content {
+    id: ID!
+    content: String!
+}
