@@ -1,16 +1,15 @@
-package com.pynguins.content.data
+package com.pynguins.content.arango_data
 
 import com.arangodb.springframework.annotation.Document
 import org.springframework.data.annotation.Id
 
 
 @Document("content")
-class Content {
+class ArangoContent {
     @Id
-    private var id: String? = null
-    private var content: String? = null
+    var id: String? = null
+    var content: String? = null
 
-    constructor() : super() {}
     constructor(content: String) : super() {
         this.content = content
     }

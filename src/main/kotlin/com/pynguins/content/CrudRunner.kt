@@ -1,7 +1,7 @@
 package com.pynguins.content
 
 import com.arangodb.springframework.core.ArangoOperations
-import com.pynguins.content.data.Content
+import com.pynguins.content.arango_data.ArangoContent
 import com.pynguins.content.repository.ContentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.CommandLineRunner
@@ -17,7 +17,7 @@ class CrudRunner : CommandLineRunner {
 
     @Throws(Exception::class)
     override fun run(vararg args: String) {
-        val content = Content("From Spring")
+        val content = ArangoContent("From Spring")
         if (repository != null) {
             repository.save(content)
             println("Saved content to Arango")

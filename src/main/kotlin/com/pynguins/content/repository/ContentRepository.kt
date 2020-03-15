@@ -1,6 +1,6 @@
 package com.pynguins.content.repository
 import com.arangodb.springframework.repository.ArangoRepository;
-import com.pynguins.content.data.Content
+import com.pynguins.content.arango_data.ArangoContent
 
-public interface ContentRepository: ArangoRepository<Content, String> {
+public interface ContentRepository: ArangoRepository<ArangoContent, String> {
 }
