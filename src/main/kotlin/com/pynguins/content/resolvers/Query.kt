@@ -1,4 +1,4 @@
-package com.pynguins.content.graphql_resolvers
+package com.pynguins.content.resolvers
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver
 import com.pynguins.content.repository.ContentRepository
