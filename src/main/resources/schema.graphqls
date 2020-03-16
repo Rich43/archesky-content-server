@@ -2,6 +2,12 @@ type Query {
     listContent: [Content]!
 }
 
+type Mutation {
+    createContent(content: String!): Boolean
+    updateContent(id: ID!, content: String!): Boolean
+    deleteContent(id: ID!): Boolean
+}
+
 type Content {
     id: ID!
     content: String!

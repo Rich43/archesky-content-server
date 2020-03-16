@@ -11,23 +11,7 @@ class Query: GraphQLQueryResolver {
     @Autowired
     private val repository: ContentRepository? = null
 
-    fun listContent(): List<Content> {
-        if (repository != null) {
-            val contentList = ArrayList<Content>()
-            repository.findAll().forEach {
-                val content = Content()
-                if (it.id != null) {
-                    content.id = it.id!!
-                }
-                if (it.content != null) {
-                    content.content = it.content!!
-                }
-                contentList.add(content)
-            }
-
-            return contentList
-        }
-        println("No repository configured")
-        return emptyList()
+    fun listContent(): MutableIterable<Content> {
+        return repository!!.findAll()
     }
 }

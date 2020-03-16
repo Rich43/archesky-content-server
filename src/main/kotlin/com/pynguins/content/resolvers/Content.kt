@@ -7,8 +7,8 @@ import org.springframework.data.annotation.Id
 @Document("content")
 class Content {
     @Id
-    var id = ""
-    var content = ""
+    var id: String? = null
+    var content: String? = null
 
     override fun toString(): String {
         return "Content [id=$id, content=$content]"
