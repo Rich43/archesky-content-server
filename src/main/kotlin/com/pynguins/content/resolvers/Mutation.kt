@@ -10,31 +10,33 @@ class Mutation: GraphQLMutationResolver {
     @Autowired
     private val repository: ContentRepository? = null
 
-    fun createContent(content: String): Boolean {
+    fun createContent(content: String): Content {
         val contentData = Content()
         contentData.content = content
         repository!!.save(contentData)
-        return true
+        return contentData
     }
 
-    fun updateContent(id: String, content: String): Boolean {
+    fun updateContent(id: String, content: String): Content? {
         val result = repository!!.findById(id)
+        val resultGet = result.get()
         if (result.isPresent) {
-            result.get().content = content
-            repository.save(result.get())
+            resultGet.content = content
+            repository.save(resultGet)
         } else {
-            return false
+            return null
         }
-        return true
+        return resultGet
     }
 
-    fun deleteContent(id: String): Boolean {
+    fun deleteContent(id: String): Content? {
         val result = repository!!.findById(id)
+        val resultGet = result.get()
         if (result.isPresent) {
-            repository.delete(result.get())
+            repository.delete(resultGet)
         } else {
-            return false
+            return null
         }
-        return true
+        return resultGet
     }
 }
