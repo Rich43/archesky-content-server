@@ -3,9 +3,9 @@ type Query {
 }
 
 type Mutation {
-    createContent(content: String!): Content!
-    updateContent(id: ID!, content: String!): Content
-    deleteContent(id: ID!): Content
+    createContent(content: String!, token: String!): Content!
+    updateContent(id: ID!, content: String!, token: String!): Content
+    deleteContent(id: ID!, token: String!): Content
 }
 
 type Content {

@@ -33,6 +33,8 @@ dependencies {
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:6.0.0")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
 	implementation("com.arangodb:arangodb-spring-data:3.2.3")
+	implementation("com.auth0:java-jwt:3.10.2")
+	implementation("com.auth0:jwks-rsa:0.11.0")
 	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:6.0.0")
 	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.0")
 	runtimeOnly("com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.0")

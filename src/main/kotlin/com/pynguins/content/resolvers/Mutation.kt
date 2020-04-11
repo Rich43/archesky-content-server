@@ -15,14 +15,14 @@ class Mutation: GraphQLMutationResolver {
         return if (result.isPresent) result.get() else null
     }
 
-    fun createContent(content: String): Content {
+    fun createContent(content: String, token: String): Content {
         val contentData = Content()
         contentData.content = content
         repository!!.save(contentData)
         return contentData
     }
 
-    fun updateContent(id: String, content: String): Content? {
+    fun updateContent(id: String, content: String, token: String): Content? {
         val result = findById(id)
         if (result != null) {
             result.content = content
@@ -33,7 +33,7 @@ class Mutation: GraphQLMutationResolver {
         return result
     }
 
-    fun deleteContent(id: String): Content? {
+    fun deleteContent(id: String, token: String): Content? {
         val result = findById(id)
         if (result != null) {
             repository!!.delete(result)
