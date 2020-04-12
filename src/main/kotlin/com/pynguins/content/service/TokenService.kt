@@ -8,11 +8,13 @@ import com.auth0.jwt.interfaces.DecodedJWT
 import graphql.GraphQLException
 import java.net.URL
 import java.security.interfaces.RSAPublicKey
+import java.text.SimpleDateFormat
 import java.util.*
 
 
 class TokenService {
     fun validateToken(token: String): DecodedJWT {
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
         val prop = Properties()
         prop.load(javaClass.classLoader.getResourceAsStream("application.properties"))
         val certificateURL = prop.getProperty("openid.connect.certificate.url")
@@ -26,6 +28,12 @@ class TokenService {
             throw GraphQLException(
                     "Token validation failed: " +
                             "Invalid issuer (Expected: '$issuer' but got '${jwt.issuer}')"
+            )
+        }
+        if (jwt.expiresAt.before(Calendar.getInstance().time)) {
+            throw GraphQLException(
+                    "Token validation failed: " +
+                            "The token expired at ${sdf.format(jwt.expiresAt)}"
             )
         }
         return jwt
