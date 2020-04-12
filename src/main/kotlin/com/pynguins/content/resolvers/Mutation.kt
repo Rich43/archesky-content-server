@@ -2,6 +2,7 @@ package com.pynguins.content.resolvers
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import com.pynguins.content.repository.ContentRepository
+import com.pynguins.content.service.TokenService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
@@ -16,6 +17,7 @@ class Mutation: GraphQLMutationResolver {
     }
 
     fun createContent(content: String, token: String): Content {
+        TokenService().validateToken(token)
         val contentData = Content()
         contentData.content = content
         repository!!.save(contentData)
@@ -23,6 +25,7 @@ class Mutation: GraphQLMutationResolver {
     }
 
     fun updateContent(id: String, content: String, token: String): Content? {
+        TokenService().validateToken(token)
         val result = findById(id)
         if (result != null) {
             result.content = content
@@ -34,6 +37,7 @@ class Mutation: GraphQLMutationResolver {
     }
 
     fun deleteContent(id: String, token: String): Content? {
+        TokenService().validateToken(token)
         val result = findById(id)
         if (result != null) {
             repository!!.delete(result)
