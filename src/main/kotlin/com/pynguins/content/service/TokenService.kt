@@ -16,7 +16,7 @@ class TokenService {
             .serverUrl("http://localhost:9090/graphql")
             .build();
 
-    fun validateToken(token: String): Data {
+    fun validateToken(token: String): CheckTokenQuery.CheckToken {
         val resultLatch = CountDownLatch(1)
         var responseData: Response<Data>? = null
         apolloClient.query(
@@ -36,6 +36,6 @@ class TokenService {
         responseData!!.errors().forEach {
             throw GraphQLException(it.message())
         }
-        return responseData!!.data()!!
+        return responseData!!.data()!!.checkToken
     }
 }
