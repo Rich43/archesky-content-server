@@ -1,16 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
-buildscript {
-	repositories {
-		jcenter()
-	}
-	dependencies {
-		classpath("com.apollographql.apollo:apollo-gradle-plugin:1.4.4")
-	}
-}
-
-
-apply(plugin = "com.apollographql.apollo")
+import java.net.URI
 
 plugins {
 	id("org.springframework.boot") version "2.2.5.RELEASE"
@@ -32,9 +21,10 @@ configurations {
 }
 
 repositories {
-	jcenter()
+	jcenter {
+		url = URI("http://pynguins.com:8082/artifactory/gradle-release/")
+	}
 	mavenCentral()
-	mavenLocal()
 }
 
 dependencies {
@@ -45,8 +35,7 @@ dependencies {
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:6.0.0")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
 	implementation("com.arangodb:arangodb-spring-data:3.2.3")
-	implementation("com.apollographql.apollo:apollo-runtime:1.4.4")
-	implementation("com.squareup.okio:okio:2.5.0")
+	implementation("com.pynguins.auth.library:pynguins-auth-library:1.1.0")
 	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:6.0.0")
 	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:6.0.0")
 	runtimeOnly("com.graphql-java-kickstart:voyager-spring-boot-starter:6.0.0")
@@ -66,8 +55,4 @@ tasks.withType<KotlinCompile> {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
 	}
-}
-
-configure<com.apollographql.apollo.gradle.api.ApolloExtension> {
-	generateKotlinModels.set(true)
 }
