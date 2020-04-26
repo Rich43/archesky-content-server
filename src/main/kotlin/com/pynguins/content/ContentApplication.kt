@@ -1,19 +1,16 @@
 package com.pynguins.content
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
 import org.springframework.boot.runApplication
-import org.springframework.context.annotation.Bean
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import java.util.*
+import org.springframework.context.annotation.ComponentScan
 
-@SpringBootApplication(exclude=[SecurityAutoConfiguration::class])
-class ContentApplication {
-    @Bean
-    fun bCryptPasswordEncoder(): BCryptPasswordEncoder? {
-        return BCryptPasswordEncoder()
-    }
-}
+@SpringBootApplication
+@ComponentScan(basePackages=[
+    "com.pynguins.content",
+    "com.pynguins.auth.library.security",
+    "com.pynguins.auth.library.service"
+])
+class ContentApplication
 
 fun main(args: Array<String>) {
     runApplication<ContentApplication>(*args)
