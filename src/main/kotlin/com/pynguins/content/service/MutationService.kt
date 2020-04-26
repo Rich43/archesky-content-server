@@ -21,6 +21,7 @@ class MutationService(private val repository: ContentRepository) {
         return contentData
     }
 
+    @PreAuthorize("hasAuthority('pynguins_demo.update_content')")
     fun updateContent(id: String, content: String): Content? {
         val result = findById(id)
         if (result != null) {
@@ -32,6 +33,7 @@ class MutationService(private val repository: ContentRepository) {
         return result
     }
 
+    @PreAuthorize("hasAuthority('pynguins_demo.delete_content')")
     fun deleteContent(id: String): Content? {
         val result = findById(id)
         if (result != null) {
