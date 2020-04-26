@@ -1,20 +1,28 @@
 package com.pynguins.content
 
 import com.pynguins.auth.library.TokenService
+import com.pynguins.content.service.TokenMappingService
 import org.slf4j.LoggerFactory.getLogger
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.context.SecurityContextHolder
-import org.springframework.security.core.userdetails.UserDetails
+import org.springframework.security.core.userdetails.UserDetailsService
+import org.springframework.stereotype.Component
 import org.springframework.web.filter.OncePerRequestFilter
 import java.util.*
 import javax.servlet.FilterChain
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-class JwtTokenFilter : OncePerRequestFilter() {
+@Component
+class JwtTokenFilter(
+        @Qualifier("customUserDetailsService") private val userDetailsService: UserDetailsService,
+        private val tokenMappingService: TokenMappingService
+) : OncePerRequestFilter() {
     private val log = getLogger(this.javaClass)
+
     private fun resolveToken(request: HttpServletRequest): String? {
         val optReq = Optional.of(request)
 
@@ -29,44 +37,16 @@ class JwtTokenFilter : OncePerRequestFilter() {
     }
 
     private fun getAuthentication(token: String?): Authentication? {
-        try {
+        return try {
             val validateToken = TokenService().validateToken(
                     token!!,
                     "http://localhost:9090/graphql"
             )
-
-            val userDetails: UserDetails = object : UserDetails {
-                override fun getAuthorities(): Collection<GrantedAuthority?> {
-                    return emptyList()
-                }
-
-                override fun getPassword(): String {
-                    return ""
-                }
-
-                override fun getUsername(): String {
-                    return validateToken.username
-                }
-
-                override fun isAccountNonExpired(): Boolean {
-                    return true
-                }
-
-                override fun isAccountNonLocked(): Boolean {
-                    return true
-                }
-
-                override fun isCredentialsNonExpired(): Boolean {
-                    return true
-                }
-
-                override fun isEnabled(): Boolean {
-                    return true
-                }
-            }
-            return UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
+            tokenMappingService.userTokenMap[validateToken.username] = validateToken
+            val userDetails = this.userDetailsService.loadUserByUsername(validateToken.username)
+            UsernamePasswordAuthenticationToken(userDetails, "", userDetails.authorities)
         } catch (e: Exception) {
-            return null
+            null
         }
     }
 
