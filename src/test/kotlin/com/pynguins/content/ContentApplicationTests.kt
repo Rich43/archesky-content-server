@@ -1,4 +1,4 @@
-package com.pynguins.content
+package com.archesky.content
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

@@ -1,6 +1,6 @@
-package com.pynguins.content.repository
+package com.archesky.content.repository
 import com.arangodb.springframework.repository.ArangoRepository;
-import com.pynguins.content.resolvers.Content
+import com.archesky.content.resolvers.Content
 
 public interface ContentRepository: ArangoRepository<Content, String> {
 }

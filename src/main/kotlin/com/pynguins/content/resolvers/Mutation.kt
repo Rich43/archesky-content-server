@@ -1,9 +1,9 @@
-package com.pynguins.content.resolvers
+package com.archesky.content.resolvers
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
-import com.pynguins.auth.library.CheckTokenQuery
-import com.pynguins.auth.library.TokenService
-import com.pynguins.content.repository.ContentRepository
+import com.archesky.auth.library.CheckTokenQuery
+import com.archesky.auth.library.TokenService
+import com.archesky.content.repository.ContentRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 

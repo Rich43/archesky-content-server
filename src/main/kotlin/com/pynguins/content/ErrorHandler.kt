@@ -1,4 +1,4 @@
-package com.pynguins.content
+package com.archesky.content
 
 import graphql.GraphQLError
 import graphql.kickstart.execution.error.GraphQLErrorHandler
