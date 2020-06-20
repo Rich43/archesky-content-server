@@ -1,4 +1,4 @@
-package com.pynguins.content
+package com.archesky.content
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

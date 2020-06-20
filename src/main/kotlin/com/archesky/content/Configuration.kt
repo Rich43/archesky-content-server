@@ -1,4 +1,4 @@
-package com.pynguins.content
+package com.archesky.content
 
 import com.arangodb.ArangoDB.Builder
 import com.arangodb.springframework.annotation.EnableArangoRepositories
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 import java.util.*
 
 @Configuration
-@EnableArangoRepositories(basePackages = ["com.pynguins.content"])
+@EnableArangoRepositories(basePackages = ["com.archesky.content"])
 class Configuration : ArangoConfiguration {
     override fun arango(): Builder {
         return Builder()

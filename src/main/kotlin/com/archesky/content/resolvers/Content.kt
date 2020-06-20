@@ -1,4 +1,4 @@
-package com.pynguins.content.resolvers
+package com.archesky.content.resolvers
 
 
 import com.arangodb.springframework.annotation.Document

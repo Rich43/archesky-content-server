@@ -1,1 +1,1 @@
-rootProject.name = "content"
+rootProject.name = "archesky-content-server"
