@@ -1,10 +1,7 @@
 package com.archesky.content.resolvers
 
-import com.archesky.auth.library.graphql.CheckTokenQuery
-import com.archesky.auth.library.service.TokenService
-import com.archesky.content.repository.ContentRepository
+import com.archesky.content.service.MutationService
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
-import com.pynguins.content.service.MutationService
 import graphql.schema.DataFetchingEnvironment
 import org.springframework.stereotype.Component
 
