@@ -6,9 +6,9 @@ import org.springframework.context.annotation.ComponentScan
 
 @SpringBootApplication
 @ComponentScan(basePackages=[
-    "com.pynguins.content",
-    "com.pynguins.auth.library.security",
-    "com.pynguins.auth.library.service"
+    "com.archesky.content",
+    "com.archesky.auth.library.security",
+    "com.archesky.auth.library.service"
 ])
 class ContentApplication
 
