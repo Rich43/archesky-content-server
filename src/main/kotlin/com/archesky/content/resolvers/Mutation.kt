@@ -2,7 +2,7 @@ package com.archesky.content.resolvers
 
 import com.archesky.content.dto.Content
 import com.archesky.content.service.MutationService
-import com.coxautodev.graphql.tools.GraphQLMutationResolver
+import graphql.kickstart.tools.GraphQLMutationResolver
 import graphql.schema.DataFetchingEnvironment
 import org.springframework.stereotype.Component
 
