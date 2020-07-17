@@ -1,7 +1,7 @@
 package com.archesky.content.service
 
+import com.archesky.content.dto.Content
 import com.archesky.content.repository.ContentRepository
-import com.archesky.content.resolvers.Content
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
 
