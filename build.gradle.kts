@@ -1,5 +1,4 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import java.lang.Integer.parseInt
 import java.lang.System.getenv
 import java.net.URI
 
@@ -12,7 +11,7 @@ plugins {
 }
 
 group = "com.archesky"
-version = "0.0.${parseInt(getenv().getOrDefault("GITHUB_RUN_ID", "1"))}-SNAPSHOT"
+version = "0.0.${getenv().getOrDefault("GITHUB_RUN_ID", "1")}-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 val developmentOnly by configurations.creating
