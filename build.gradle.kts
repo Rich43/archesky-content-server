@@ -46,6 +46,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	testImplementation("com.graphql-java-kickstart:graphql-spring-boot-test:7.1.0")
 }
 
 tasks.withType<Test> {
