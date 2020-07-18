@@ -80,6 +80,7 @@ publishing {
 	publications {
 		create<MavenPublication>("gpr") {
 			from(components["java"])
+			artifact(tasks.getByName("bootJar"))
 		}
 	}
 }
