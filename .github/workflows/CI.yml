@@ -27,4 +27,4 @@ jobs:
     - run: gradle wrapper
     - uses: eskatos/gradle-command-action@v1
       with:
-        arguments: clean build bootJar
+        arguments: clean build bootJar publish
