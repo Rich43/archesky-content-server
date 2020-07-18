@@ -11,6 +11,10 @@ plugins {
 	kotlin("plugin.spring") version "1.3.61"
 }
 
+buildscript {
+	tasks.findByName("build")?.dependsOn("bootJar")
+}
+
 group = "com.archesky"
 version = "0.0.${getenv().getOrDefault("GITHUB_RUN_ID", "1")}-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
