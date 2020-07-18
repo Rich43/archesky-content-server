@@ -12,7 +12,7 @@ plugins {
 }
 
 group = "com.archesky"
-version = "0.0.${parseInt(getenv().getOrDefault("BUILD_NUM", "1"))}-SNAPSHOT"
+version = "0.0.${parseInt(getenv().getOrDefault("GITHUB_RUN_ID", "1"))}-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
 val developmentOnly by configurations.creating
