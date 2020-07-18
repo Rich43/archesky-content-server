@@ -69,7 +69,7 @@ publishing {
 			url = uri("https://maven.pkg.github.com/Rich43/archesky-content-server")
 			credentials {
 				username = (project.findProperty("gpr.user") ?: getenv("GITHUB_ACTOR")).toString()
-				password = (project.findProperty("gpr.key") ?: getenv("TOKEN")).toString()
+				password = (project.findProperty("gpr.key") ?: getenv("GITHUB_TOKEN")).toString()
 			}
 		}
 	}
