@@ -6,6 +6,7 @@ plugins {
 	id("org.springframework.boot") version "2.2.5.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("io.franzbecker.gradle-lombok") version "3.2.0"
+	`maven-publish`
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
 }
@@ -58,5 +59,23 @@ tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
 		jvmTarget = "1.8"
+	}
+}
+
+publishing {
+	repositories {
+		maven {
+			name = "GitHubPackages"
+			url = uri("https://maven.pkg.github.com/Rich43/archesky-content-server")
+			credentials {
+				username = (project.findProperty("gpr.user") ?: getenv("USERNAME")).toString()
+				password = (project.findProperty("gpr.key") ?: getenv("TOKEN")).toString()
+			}
+		}
+	}
+	publications {
+		create<MavenPublication>("gpr") {
+			from(components["java"])
+		}
 	}
 }
