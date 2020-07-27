@@ -47,8 +47,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ GITHUB_RUN_ID }}
-          release_name: Release ${{ GITHUB_RUN_ID }}
+          tag_name: ${GITHUB_RUN_ID}
+          release_name: Release ${GITHUB_RUN_ID}
           body_path: README.md
           draft: false
           prerelease: false
@@ -59,6 +59,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: build/libs/archesky-content-server-${{ GITHUB_RUN_ID }}-SNAPSHOT.jar
-          asset_name: archesky-content-server-${{ GITHUB_RUN_ID }}-SNAPSHOT.jar
+          asset_path: build/libs/archesky-content-server-${GITHUB_RUN_ID}-SNAPSHOT.jar
+          asset_name: archesky-content-server-${GITHUB_RUN_ID}-SNAPSHOT.jar
           asset_content_type: application/java-archive
