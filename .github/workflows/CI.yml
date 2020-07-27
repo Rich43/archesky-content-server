@@ -40,7 +40,7 @@ jobs:
           arguments: clean build bootJar publish
       - name: Rename artifact
         id: rename_artifact
-        run: mv build/libs/*.jar build/libs/archesky-content-server-${{ GITHUB_RUN_ID }}-SNAPSHOT.jar
+        run: mv build/libs/*.jar build/libs/archesky-content-server-${GITHUB_RUN_ID}-SNAPSHOT.jar
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
