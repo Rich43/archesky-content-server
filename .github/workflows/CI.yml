@@ -38,9 +38,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           arguments: clean build bootJar publish
-      - name: Rename artifact
-        id: rename_artifact
-        run: mv build/libs/*.jar build/libs/archesky-content-server-0.0.${{ github.run_id }}-SNAPSHOT.jar
       - name: Create release
         id: create_release
         uses: actions/create-release@v1
