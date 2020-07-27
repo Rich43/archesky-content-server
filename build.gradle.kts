@@ -1,12 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.lang.System.getenv
-import java.net.URI
 
 plugins {
 	id("org.springframework.boot") version "2.2.5.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("io.franzbecker.gradle-lombok") version "3.2.0"
 	`maven-publish`
+	`maven`
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
 }
@@ -28,8 +28,11 @@ configurations {
 
 repositories {
 	jcenter()
-	maven {
-		url = URI("http://pynguins.com:8081/nexus/content/repositories/releases")
+	maven("https://maven.pkg.github.com/Rich43/archesky-auth-library") {
+		credentials {
+			username = "Rich43"
+			password = getenv()["GITHUB_TOKEN"]
+		}
 	}
 	mavenCentral()
 }
@@ -43,7 +46,7 @@ dependencies {
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:7.1.0")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
 	implementation("com.arangodb:arangodb-spring-data:3.2.3")
-	implementation("com.archesky.auth.library:archesky-auth-library:1.4.0")
+	implementation("com.archesky.auth.library:archesky-auth-library:0.0.184755471-SNAPSHOT")
 	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:7.1.0")
 	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:7.1.0")
 	runtimeOnly("com.graphql-java-kickstart:voyager-spring-boot-starter:7.1.0")
