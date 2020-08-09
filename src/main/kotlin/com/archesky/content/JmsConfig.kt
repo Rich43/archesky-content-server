@@ -1,15 +1,14 @@
-package com.archesky.content;
+package com.archesky.content
 
-import org.apache.activemq.command.ActiveMQQueue;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import javax.jms.Queue;
+import org.apache.activemq.command.ActiveMQQueue
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+import javax.jms.Queue
 
 @Configuration
-public class JmsConfig {
+class JmsConfig {
     @Bean
-    public Queue queue() {
-        return new ActiveMQQueue("content-queue");
+    fun queue(): Queue {
+        return ActiveMQQueue("content-queue")
     }
 }
