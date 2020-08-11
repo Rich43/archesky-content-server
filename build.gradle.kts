@@ -43,6 +43,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-activemq")
 	implementation("org.springframework.integration:spring-integration-core")
 	implementation("org.springframework.integration:spring-integration-jms")
+	implementation("com.google.code.gson:gson:2.8.6")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:7.1.0")
