@@ -12,7 +12,6 @@ import org.springframework.messaging.Message
 import org.springframework.stereotype.Service
 import javax.jms.ConnectionFactory
 
-
 @Service
 class ContentQueueService(@Qualifier("jmsConnectionFactory") private val connectionFactory: ConnectionFactory) {
     @Bean
