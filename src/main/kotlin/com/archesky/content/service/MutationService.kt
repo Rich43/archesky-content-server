@@ -2,12 +2,15 @@ package com.archesky.content.service
 
 import com.archesky.content.dto.Content
 import com.archesky.content.repository.ContentRepository
+import org.springframework.jms.core.JmsTemplate
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
+import javax.jms.Queue
 
 @Service
-class MutationService(private val repository: ContentRepository) {
-
+class MutationService(private val repository: ContentRepository,
+                      private val queue: Queue,
+                      private val jmsTemplate: JmsTemplate) {
     private fun findById(id: String): Content? {
         val result = repository.findById(id)
         return if (result.isPresent) result.get() else null
@@ -26,6 +29,7 @@ class MutationService(private val repository: ContentRepository) {
         val result = findById(id)
         if (result != null) {
             result.content = content
+            jmsTemplate.convertAndSend(queue, result)
             repository.save(result)
         } else {
             return null
