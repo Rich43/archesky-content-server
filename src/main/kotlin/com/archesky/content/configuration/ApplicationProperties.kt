@@ -1,4 +1,4 @@
-package com.archesky.content
+package com.archesky.content.configuration
 
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Configuration

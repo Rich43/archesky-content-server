@@ -1,4 +1,4 @@
-package com.archesky.content
+package com.archesky.content.configuration
 
 import com.arangodb.ArangoDB.Builder
 import com.arangodb.springframework.annotation.EnableArangoRepositories
