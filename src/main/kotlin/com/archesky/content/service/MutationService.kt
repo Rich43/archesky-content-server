@@ -17,7 +17,7 @@ class MutationService(private val repository: ContentRepository,
         return if (result.isPresent) result.get() else null
     }
 
-//    @PreAuthorize("hasAuthority('archesky.create_content')")
+    @PreAuthorize("hasAuthority('archesky.create_content')")
     fun createContent(content: String): Content {
         val contentData = Content()
         contentData.content = content
@@ -25,7 +25,7 @@ class MutationService(private val repository: ContentRepository,
         return contentData
     }
 
-//    @PreAuthorize("hasAuthority('archesky.update_content')")
+    @PreAuthorize("hasAuthority('archesky.update_content')")
     fun updateContent(id: String, content: String): Content? {
         val result = findById(id)
         if (result != null) {
