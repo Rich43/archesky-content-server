@@ -40,9 +40,12 @@ repositories {
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.springframework.boot:spring-boot-starter-security")
+	implementation("org.springframework.boot:spring-boot-starter-activemq")
+	implementation("com.google.code.gson:gson:2.8.6")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:7.1.0")
+	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-webflux:7.1.0")
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:7.1.0")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
 	implementation("com.arangodb:arangodb-spring-data:3.2.3")

@@ -8,6 +8,10 @@ type Mutation {
     deleteContent(id: ID!): Content
 }
 
+type Subscription {
+    updateContent(id: ID!): Content
+}
+
 type Content {
     id: ID!
     content: String!
