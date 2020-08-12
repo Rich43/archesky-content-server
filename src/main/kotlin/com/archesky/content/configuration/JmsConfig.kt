@@ -1,4 +1,4 @@
-package com.archesky.content
+package com.archesky.content.configuration
 
 import org.apache.activemq.command.ActiveMQQueue
 import org.springframework.context.annotation.Bean
