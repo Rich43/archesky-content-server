@@ -2,8 +2,8 @@ package com.archesky.content.kafka
 
 import com.archesky.content.configuration.ApplicationProperties
 import org.apache.kafka.clients.consumer.ConsumerConfig
-import org.apache.kafka.common.serialization.IntegerSerializer
-import org.apache.kafka.common.serialization.StringSerializer
+import org.apache.kafka.common.serialization.IntegerDeserializer
+import org.apache.kafka.common.serialization.StringDeserializer
 import org.apache.logging.log4j.LogManager.getLogger
 import reactor.core.publisher.Flux
 import reactor.kafka.receiver.KafkaReceiver
@@ -19,8 +19,8 @@ class KafkaConsumer(private val applicationProperties: ApplicationProperties) {
         props[ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG] = applicationProperties.kafkaUrl
         props[ConsumerConfig.CLIENT_ID_CONFIG] = applicationProperties.kafkaTopic
         props[ConsumerConfig.GROUP_ID_CONFIG] = applicationProperties.kafkaTopic
-        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = IntegerSerializer::class.java
-        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringSerializer::class.java
+        props[ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG] = IntegerDeserializer::class.java
+        props[ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG] = StringDeserializer::class.java
         props[ConsumerConfig.AUTO_OFFSET_RESET_CONFIG] = "earliest"
 
         receiverOptions = ReceiverOptions.create(props)

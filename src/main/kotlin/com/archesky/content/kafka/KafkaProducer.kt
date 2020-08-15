@@ -35,9 +35,9 @@ class KafkaProducer(private val applicationProperties: ApplicationProperties) {
         val latch = CountDownLatch(1)
         sender.send<Int>(Flux.range(rowId, 1)
                 .map { SenderRecord.create(ProducerRecord(applicationProperties.kafkaTopic, rowId, message), rowId) })
-                .doOnError { e -> log.error("Failed to send event to kafka", e, rowId) }
+                .doOnError { e -> log.error("Failed to send event to kafka, rowID: $rowId", e) }
                 .subscribe {
-                    log.info("Added event to kafka, rowId: ", rowId);
+                    log.info("Added event to kafka, rowId: $rowId");
                     latch.countDown()
                 }
         latch.await(10, SECONDS)
