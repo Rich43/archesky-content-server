@@ -8,16 +8,14 @@ import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.observables.ConnectableObservable
 import org.reactivestreams.Publisher
-import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.jms.annotation.EnableJms
 import org.springframework.jms.annotation.JmsListener
 import org.springframework.stereotype.Service
-import javax.jms.ConnectionFactory
 
 
 @Service
 @EnableJms
-class ContentQueueService(@Qualifier("jmsConnectionFactory") private val connectionFactory: ConnectionFactory) {
+class ContentQueueService {
     private val publisher: Publisher<Content>
     private var emitter: ObservableEmitter<Content>? = null
 
