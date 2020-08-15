@@ -46,7 +46,7 @@ dependencies {
 	implementation("com.graphql-java-kickstart:graphql-spring-boot-starter:7.1.0")
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-webflux:7.1.0")
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:7.1.0")
-	implementation("io.projectreactor.kafka:reactor-kafka:1.3.0-SNAPSHOT")
+	implementation("io.projectreactor.kafka:reactor-kafka:1.2.2.RELEASE")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
 	implementation("com.arangodb:arangodb-spring-data:3.2.3")
 	implementation("com.archesky.auth.library:archesky-auth-library:0.0.184755471-SNAPSHOT")
