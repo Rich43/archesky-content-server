@@ -12,7 +12,6 @@ import org.springframework.jms.annotation.EnableJms
 import org.springframework.jms.annotation.JmsListener
 import org.springframework.stereotype.Service
 
-
 @Service
 @EnableJms
 class ContentQueueService {
