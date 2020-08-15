@@ -11,5 +11,7 @@ data class ApplicationProperties (
     @Value("\${arangodb.host}") val arangodbHost: String,
     @Value("\${arangodb.port}") val arangodbPort: Int,
     @Value("\${arangodb.user}") val arangodbUser: String,
-    @Value("\${arangodb.password}") val arangodbPassword: String
+    @Value("\${arangodb.password}") val arangodbPassword: String,
+    @Value("\${kafka.url}") val kafkaUrl: String,
+    @Value("\${kafka.topic") val kafkaTopic: String
 )
