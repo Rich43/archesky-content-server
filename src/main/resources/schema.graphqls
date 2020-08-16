@@ -5,7 +5,7 @@ type Query {
 type Mutation {
     createContent(content: String!): Content!
     updateContent(id: ID!, content: String!): Content
-    deleteContent(id: ID!): Content
+    deleteContent(id: ID!): Boolean
 }
 
 type Subscription {

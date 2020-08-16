@@ -16,7 +16,7 @@ class Mutation(private val mutationService: MutationService): GraphQLMutationRes
         return mutationService.updateContent(id, content)
     }
 
-    fun deleteContent(id: String, environment: DataFetchingEnvironment): Content? {
+    fun deleteContent(id: String, environment: DataFetchingEnvironment): Boolean {
         return mutationService.deleteContent(id)
     }
 }
