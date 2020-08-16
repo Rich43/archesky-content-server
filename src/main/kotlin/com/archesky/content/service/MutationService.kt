@@ -20,7 +20,7 @@ class MutationService(private val repository: ContentRepository,
     @PreAuthorize("hasAuthority('archesky.update_content')")
     fun updateContent(id: String, content: String): Content? {
         val result = repository.updateContentById(id, content)
-         jmsTemplate.convertAndSend(queue, Gson().toJson(result))
+        jmsTemplate.convertAndSend(queue, Gson().toJson(result))
         return result
     }
 
