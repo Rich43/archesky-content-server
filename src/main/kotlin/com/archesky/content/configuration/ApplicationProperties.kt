@@ -11,7 +11,5 @@ data class ApplicationProperties (
     @Value("\${arangodb.host}") val arangodbHost: String,
     @Value("\${arangodb.port}") val arangodbPort: Int,
     @Value("\${arangodb.user}") val arangodbUser: String,
-    @Value("\${arangodb.password}") val arangodbPassword: String,
-    @Value("#{T(java.lang.Integer).parseInt(\${server.http.port})}") val httpPort: Int,
-    @Value("#{T(java.lang.Integer).parseInt(\${server.port})}") val httpsPort: Int
+    @Value("\${arangodb.password}") val arangodbPassword: String
 )
