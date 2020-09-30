@@ -47,7 +47,7 @@ dependencies {
 	implementation("com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:7.1.0")
 	implementation("com.arangodb:arangodb-java-driver:6.6.0")
 	implementation("com.arangodb:arangodb-spring-data:3.2.3")
-	implementation("com.archesky.auth.library:archesky-auth-library:0.0.277375911-SNAPSHOT")
+	implementation("com.archesky.auth.library:archesky-auth-library:0.0.281083311-SNAPSHOT")
 	implementation("com.archesky.ssl.library:archesky-ssl-library:0.0.281034691-SNAPSHOT")
 	runtimeOnly("com.graphql-java-kickstart:altair-spring-boot-starter:7.1.0")
 	runtimeOnly("com.graphql-java-kickstart:graphiql-spring-boot-starter:7.1.0")
