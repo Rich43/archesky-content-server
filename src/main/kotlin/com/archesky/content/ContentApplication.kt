@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan
     "com.archesky.content",
     "com.archesky.auth.library.security",
     "com.archesky.auth.library.service",
-    "com.archesky.common.library.configuration"
+    "com.archesky.ssl.library.configuration"
 ])
 class ContentApplication
 
