@@ -31,6 +31,12 @@ repositories {
 			password = getenv()["GITHUB_TOKEN"]
 		}
 	}
+	maven("https://maven.pkg.github.com/Rich43/archesky-apollo-library") {
+		credentials {
+        		username = "Rich43"
+        		password = getenv()["GITHUB_TOKEN"]
+        	}
+	}
 	mavenCentral()
 }
 
