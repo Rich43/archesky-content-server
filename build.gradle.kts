@@ -4,9 +4,7 @@ import java.lang.System.getenv
 plugins {
 	id("org.springframework.boot") version "2.3.4.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
-	id("io.franzbecker.gradle-lombok") version "3.2.0"
 	`maven-publish`
-	maven
 	kotlin("jvm") version "1.3.61"
 	kotlin("plugin.spring") version "1.3.61"
 }
@@ -18,13 +16,6 @@ buildscript {
 group = "com.archesky"
 version = "0.0.${getenv().getOrDefault("GITHUB_RUN_ID", "1")}-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
-
-val developmentOnly by configurations.creating
-configurations {
-	runtimeClasspath {
-		extendsFrom(developmentOnly)
-	}
-}
 
 repositories {
 	jcenter()
@@ -76,7 +67,7 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "1.8"
+		jvmTarget = "11"
 	}
 }
 
