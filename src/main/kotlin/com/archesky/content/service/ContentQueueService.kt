@@ -1,19 +1,14 @@
 package com.archesky.content.service
 
-import com.archesky.content.configuration.QUEUE_NAME
 import com.archesky.content.dto.Content
-import com.google.gson.Gson
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.observables.ConnectableObservable
 import org.reactivestreams.Publisher
-import org.springframework.jms.annotation.EnableJms
-import org.springframework.jms.annotation.JmsListener
 import org.springframework.stereotype.Service
 
 @Service
-@EnableJms
 class ContentQueueService {
     private val publisher: Publisher<Content>
     private var emitter: ObservableEmitter<Content>? = null
@@ -27,9 +22,8 @@ class ContentQueueService {
         publisher = connectableObservable.toFlowable(BackpressureStrategy.BUFFER)
     }
 
-    @JmsListener(destination = QUEUE_NAME)
-    private fun listener(message: String) {
-        emitter!!.onNext(Gson().fromJson(message, Content::class.java))
+    fun push(content: Content) {
+        emitter!!.onNext(content)
     }
 
     fun getPublisher(): Publisher<Content> {
