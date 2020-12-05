@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: content-server
+  name: content-server
+spec:
+  ports:
+  - name: "8080"
+    port: 8080
+    targetPort: 8080
+  - name: "8443"
+    port: 8443
+    targetPort: 8443
+  selector:
+    io.kompose.service: content-server

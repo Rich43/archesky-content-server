@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: content-server
+  name: content-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: content-server
+  strategy: { }
+  template:
+    metadata:
+      labels:
+        io.kompose.service: content-server
+    spec:
+      containers:
+        - env:
+            - name: arangodb.host
+              value: arangodb-server
+            - name: archesky.auth.library.server.url
+              value: https://auth-server:9443/graphql
+          image: docker.io/pynguins/archesky-content-server:latest
+          imagePullPolicy: ""
+          name: content-server
+          ports:
+            - containerPort: 8080
+            - containerPort: 8443
+          resources: { }
+      restartPolicy: Always
+      serviceAccountName: ""
