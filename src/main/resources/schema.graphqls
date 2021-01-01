@@ -1,18 +1,30 @@
 type Query {
     listContent: [Content!]!
+    listAllRevisions(name: ID!): [ContentRevision!]!
 }
 
 type Mutation {
-    createContent(content: String!): Content!
-    updateContent(id: ID!, content: String!): Content
-    deleteContent(id: ID!): Boolean
+    createContent(name: ID!, displayName: String): Content!
+    revertContent(id: ID!): ContentRevision!
+    deleteContent(id: ID!): Boolean!
+    togglePublished(name: ID!): Boolean!
+    createRevision(content: String!, summary: String, html: Boolean): ContentRevision
 }
 
 type Subscription {
-    updateContent(id: ID!): Content
+    updateContent(name: ID!): Content!
 }
 
 type Content {
+    name: ID!
+    displayName: String
+    published: Boolean!
+    latestRevision: ContentRevision
+}
+
+type ContentRevision {
     id: ID!
     content: String!
+    summary: String
+    html: Boolean!
 }
