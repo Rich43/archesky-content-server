@@ -1,3 +1,5 @@
+scalar DateTime
+
 type Query {
     listContent: [Content!]!
     listAllRevisions(name: ID!): [ContentRevision!]!
@@ -20,6 +22,8 @@ type Content {
     displayName: String
     published: Boolean!
     latestRevision: ContentRevision
+    created: DateTime
+    updated: DateTime
 }
 
 type ContentRevision {
@@ -27,4 +31,5 @@ type ContentRevision {
     content: String!
     summary: String
     html: Boolean!
+    created: DateTime
 }
