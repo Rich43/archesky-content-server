@@ -4,6 +4,7 @@ import com.archesky.content.dto.Content
 import com.archesky.content.repository.ContentRepository
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class MutationService(private val repository: ContentRepository,
@@ -21,8 +22,8 @@ class MutationService(private val repository: ContentRepository,
     }
 
     @PreAuthorize("hasAuthority('archesky.delete_content')")
-    fun deleteContent(id: String): Boolean {
-        repository.deleteContentById(id)
+    fun deleteContent(name: String): Boolean {
+        repository.deleteContentByName(name)
         return true
     }
 }

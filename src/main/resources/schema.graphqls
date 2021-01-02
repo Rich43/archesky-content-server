@@ -7,7 +7,8 @@ type Query {
 
 type Mutation {
     createContent(name: ID!, displayName: String): Content!
-    revertContent(id: ID!): ContentRevision!
+    updateDisplayName(name: ID!, displayName: String): Content!
+    revertContent(name: ID!, revisionId: ID!): ContentRevision!
     deleteContent(id: ID!): Boolean!
     togglePublished(name: ID!): Boolean!
     createRevision(content: String!, summary: String, html: Boolean): ContentRevision
