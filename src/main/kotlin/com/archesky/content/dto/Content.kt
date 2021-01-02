@@ -5,6 +5,10 @@ import org.springframework.data.annotation.Id
 
 @Document("content")
 data class Content (
-    @Id var id: String? = null,
-    var content: String? = null
+    @Id var name: String? = null,
+    var displayName: String? = null,
+    var published: Boolean = false,
+    var latestRevision: ContentRevision? = null,
+    var created: String? = null,
+    var updated: String? = null
 )
