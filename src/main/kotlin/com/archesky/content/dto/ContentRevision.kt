@@ -2,6 +2,7 @@ package com.archesky.content.dto
 
 import com.arangodb.springframework.annotation.Document
 import org.springframework.data.annotation.Id
+import java.util.*
 
 @Document("content_revision")
 data class ContentRevision(
@@ -10,5 +11,5 @@ data class ContentRevision(
     var content: String? = null,
     var summary: String? = null,
     var html: Boolean = false,
-    var created: String? = null
+    var created: Date? = null
 )

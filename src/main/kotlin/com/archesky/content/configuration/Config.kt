@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 @EnableArangoRepositories(basePackages = ["com.archesky.content"])
-class Configuration(val applicationProperties: ApplicationProperties) : ArangoConfiguration {
+class Config(val applicationProperties: ApplicationProperties) : ArangoConfiguration {
     override fun arango(): Builder {
         return Builder()
                 .host(applicationProperties.arangodbHost, applicationProperties.arangodbPort)
