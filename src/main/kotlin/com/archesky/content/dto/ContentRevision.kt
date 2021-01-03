@@ -11,5 +11,6 @@ data class ContentRevision(
     var content: String? = null,
     var summary: String? = null,
     var html: Boolean = false,
-    var created: Date? = null
+    var created: Date? = null,
+    var parent: Content? = null
 )

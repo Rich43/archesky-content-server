@@ -15,6 +15,6 @@ data class Content (
     var updated: Date? = null,
     @Relations(
         edges=[ContentMapping::class],
-        direction=Relations.Direction.OUTBOUND
+        direction=Relations.Direction.ANY
     ) var contentRevision: ArrayList<ContentRevision>? = null
 )
