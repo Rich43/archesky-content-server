@@ -16,7 +16,7 @@ class MutationService(private val contentRepository: ContentRepository,
     }
 
     @PreAuthorize("hasAuthority('archesky.update_content')")
-    fun createRevision(name: String, content: String, summary: String, html: Boolean): Content? {
+    fun createRevision(name: String, content: String, summary: String, html: Boolean): Content {
         val contentByName = contentRepository.findByName(name)
         val contentRevision = ContentRevision(null, content, summary, html, Date())
         contentByName.contentRevision!!.add(contentRevision)
