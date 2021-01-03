@@ -4,7 +4,7 @@ import com.archesky.content.dto.Content
 import com.archesky.content.dto.ContentRevision
 import com.archesky.content.repository.ContentRepository
 import com.archesky.content.repository.ContentRevisionRepository
-import org.springframework.security.access.prepost.PreAuthorize
+import graphql.GraphQLException
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -12,9 +12,15 @@ import java.util.*
 class MutationService(private val contentRepository: ContentRepository,
                       private val contentRevisionRepository: ContentRevisionRepository,
                       private val contentQueueService: ContentQueueService) {
-    @PreAuthorize("hasAuthority('archesky.create_content')")
-    fun createContent(content: String, displayName: String): Content {
-        return contentRepository.createContent(content, displayName, Date(), Date())
+//    @PreAuthorize("hasAuthority('archesky.create_content')")
+    fun createContent(name: String, displayName: String): Content {
+        try {
+            contentRepository.findByName(name)
+            throw GraphQLException("Content already exists")
+        } catch (e: Exception) { // TODO change me
+            // Ignore
+        }
+        return contentRepository.createContent(name, displayName, Date(), Date())
     }
 
     @PreAuthorize("hasAuthority('archesky.update_content')")
