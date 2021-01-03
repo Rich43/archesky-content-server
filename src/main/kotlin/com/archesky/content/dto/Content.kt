@@ -4,7 +4,6 @@ import com.arangodb.springframework.annotation.Document
 import com.arangodb.springframework.annotation.Relations
 import org.springframework.data.annotation.Id
 import java.util.*
-import kotlin.reflect.KClass
 
 @Document("content")
 data class Content (
@@ -17,5 +16,5 @@ data class Content (
     @Relations(
         edges=[ContentMapping::class],
         direction=Relations.Direction.OUTBOUND
-    ) var contentRevision: List<ContentRevision>? = null
+    ) var contentRevision: ArrayList<ContentRevision>? = null
 )

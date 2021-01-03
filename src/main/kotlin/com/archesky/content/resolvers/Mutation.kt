@@ -11,8 +11,8 @@ class Mutation(private val mutationService: MutationService): GraphQLMutationRes
         return mutationService.createContent(name, displayName)
     }
 
-    fun updateDisplayName(name: String, displayName: String): Content? {
-        return mutationService.updateDisplayName(name, displayName)
+    fun createRevision(name: String, content: String, summary: String, html: Boolean): Content? {
+        return mutationService.createRevision(name, content, summary, html)
     }
 
     fun deleteContent(name: String): Boolean {

@@ -11,7 +11,7 @@ type Mutation {
     revertContent(name: ID!, revisionId: ID!): ContentRevision!
     deleteContent(id: ID!): Boolean!
     togglePublished(name: ID!): Boolean!
-    createRevision(content: String!, summary: String, html: Boolean): ContentRevision
+    createRevision(name: ID!, content: String!, summary: String, html: Boolean): ContentRevision
 }
 
 type Subscription {

@@ -21,4 +21,6 @@ interface ContentRepository : ArangoRepository<Content, String> {
     fun updateDisplayName(@Param("key") name: String, @Param("displayName") displayName: String): Content
 
     fun deleteContentByName(name: String)
+
+    fun findByName(name: String): Content
 }
