@@ -1,7 +1,9 @@
 package com.archesky.content.service
 
 import com.archesky.content.dto.Content
+import com.archesky.content.dto.ContentMapping
 import com.archesky.content.dto.ContentRevision
+import com.archesky.content.repository.ContentMappingRepository
 import com.archesky.content.repository.ContentRepository
 import com.archesky.content.repository.ContentRevisionRepository
 import graphql.GraphQLException
@@ -15,6 +17,7 @@ import java.util.*
 @Service
 class MutationService(private val contentRepository: ContentRepository,
                       private val contentRevisionRepository: ContentRevisionRepository,
+                      private val contentMappingRepository: ContentMappingRepository,
                       private val contentQueueService: ContentQueueService) {
     val log: Logger = getLogger(MutationService::class)
 
@@ -33,6 +36,8 @@ class MutationService(private val contentRepository: ContentRepository,
     fun createRevision(name: String, content: String, summary: String, html: Boolean): ContentRevision {
         val contentByName = contentRepository.findByName(name)
         val contentRevision = ContentRevision(null, content, summary, html, Date(), contentByName)
+        val contentMapping = ContentMapping(null, contentByName, contentRevision)
+        contentMappingRepository.save(contentMapping)
         contentRevisionRepository.save(contentRevision)
         contentQueueService.push(contentRevision)
         return contentRevision
