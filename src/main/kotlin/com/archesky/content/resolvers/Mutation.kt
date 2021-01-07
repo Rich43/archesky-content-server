@@ -24,7 +24,11 @@ class Mutation(private val mutationService: MutationService): GraphQLMutationRes
 
     fun updateDisplayName(name: String, displayName: String): Content {
         val revision = ContentRevision("123", "blah", "blah")
-        return Content("Dummy", "dummy", false, revision, null, null, singletonList(revision) as ArrayList<ContentRevision>?)
+        return Content(
+            null, "Dummy", "dummy", false,
+            revision, null, null,
+            singletonList(revision) as ArrayList<ContentRevision>?
+        )
     }
 
     fun revertContent(name: String, revisionId: String): ContentRevision {
