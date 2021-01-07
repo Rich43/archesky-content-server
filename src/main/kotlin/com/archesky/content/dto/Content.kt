@@ -7,7 +7,8 @@ import java.util.*
 
 @Document("content")
 data class Content (
-    @Id var name: String? = null,
+    @Id var id: String? = null,
+    var name: String? = null,
     var displayName: String? = null,
     var published: Boolean = false,
     var latestRevision: ContentRevision? = null,
