@@ -36,9 +36,9 @@ class MutationService(private val contentRepository: ContentRepository,
     fun createRevision(name: String, content: String, summary: String, html: Boolean): ContentRevision {
         val contentByName = contentRepository.findByName(name)
         val contentRevision = ContentRevision(null, content, summary, html, Date(), contentByName)
+        contentRevisionRepository.save(contentRevision)
         val contentMapping = ContentMapping(null, contentByName, contentRevision)
         contentMappingRepository.save(contentMapping)
-        contentRevisionRepository.save(contentRevision)
         contentQueueService.push(contentRevision)
         return contentRevision
     }
