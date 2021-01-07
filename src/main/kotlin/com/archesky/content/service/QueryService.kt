@@ -8,8 +8,7 @@ import org.springframework.stereotype.Service
 import java.util.ArrayList
 
 @Service
-class QueryService(private val contentRepository: ContentRepository,
-                   private val contentRevisionRepository: ContentRevisionRepository) {
+class QueryService(private val contentRepository: ContentRepository) {
     fun listContent(): Iterable<Content> {
         return contentRepository.findAll()
     }
