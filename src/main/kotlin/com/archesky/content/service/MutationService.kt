@@ -11,6 +11,8 @@ import org.apache.logging.log4j.LogManager.getLogger
 import org.apache.logging.log4j.Logger
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.security.access.prepost.PreAuthorize
+import org.springframework.security.core.GrantedAuthority
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -32,15 +34,23 @@ class MutationService(private val contentRepository: ContentRepository,
         return contentRepository.createContent(name, displayName, Date(), Date())
     }
 
-    @PreAuthorize("hasAuthority('archesky.update_content')")
+    @PreAuthorize("hasAuthority('archesky.create_revision')")
     fun createRevision(name: String, content: String, summary: String, html: Boolean): ContentRevision {
         val contentByName = contentRepository.findByName(name)
-        val contentRevision = ContentRevision(null, content, summary, html, Date(), contentByName)
+        val contentRevision = ContentRevision(
+            null, content, summary, html && checkAuthority("update_html"), Date(), contentByName
+        )
         contentRevisionRepository.save(contentRevision)
         val contentMapping = ContentMapping(null, contentByName, contentRevision)
         contentMappingRepository.save(contentMapping)
         contentQueueService.push(contentRevision)
         return contentRevision
+    }
+
+    private fun checkAuthority(authority: String): Boolean {
+        return SecurityContextHolder.getContext().authentication.authorities.stream().anyMatch {
+                auth: GrantedAuthority -> auth.authority == authority
+        }
     }
 
     @PreAuthorize("hasAuthority('archesky.delete_content')")
