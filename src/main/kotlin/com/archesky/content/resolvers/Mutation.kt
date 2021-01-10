@@ -2,6 +2,7 @@ package com.archesky.content.resolvers
 
 import com.archesky.content.dto.Content
 import com.archesky.content.dto.ContentRevision
+import com.archesky.content.dto.RevisionInput
 import com.archesky.content.service.MutationService
 import graphql.kickstart.tools.GraphQLMutationResolver
 import org.springframework.stereotype.Component
@@ -14,8 +15,11 @@ class Mutation(private val mutationService: MutationService): GraphQLMutationRes
         return mutationService.createContent(name, displayName)
     }
 
-    fun createRevision(name: String, content: String, summary: String, html: Boolean): ContentRevision {
-        return mutationService.createRevision(name, content, summary, html)
+    fun createRevision(name: String, revisionInput: RevisionInput): ContentRevision {
+        return mutationService.createRevision(
+            name, revisionInput.content,
+            revisionInput.summary, revisionInput.html
+        )
     }
 
     fun deleteContent(name: String): Boolean {

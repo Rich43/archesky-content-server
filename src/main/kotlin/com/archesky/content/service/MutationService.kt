@@ -3,6 +3,7 @@ package com.archesky.content.service
 import com.archesky.content.dto.Content
 import com.archesky.content.dto.ContentMapping
 import com.archesky.content.dto.ContentRevision
+import com.archesky.content.exceptions.PageNotFoundException
 import com.archesky.content.repository.ContentMappingRepository
 import com.archesky.content.repository.ContentRepository
 import com.archesky.content.repository.ContentRevisionRepository
@@ -35,8 +36,13 @@ class MutationService(private val contentRepository: ContentRepository,
     }
 
     @PreAuthorize("hasAuthority('archesky.create_revision')")
-    fun createRevision(name: String, content: String, summary: String, html: Boolean): ContentRevision {
-        val contentByName = contentRepository.findByName(name)
+    fun createRevision(name: String, content: String, summary: String?, html: Boolean): ContentRevision {
+        val contentByName: Content
+        try {
+             contentByName = contentRepository.findByName(name)
+        } catch (e: EmptyResultDataAccessException) {
+            throw PageNotFoundException("Unable to find page $name")
+        }
         val contentRevision = ContentRevision(
             null, content, summary, html && checkAuthority("update_html"), Date(), contentByName
         )
